@@ -1,0 +1,10 @@
+[package]
+name = "zachscrape"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.89"
+regex = "1.10.6"
+reqwest = "0.12.7"
+tokio = { version = "1.40.0", features = ["full"] }
