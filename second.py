@@ -2,9 +2,16 @@ import tkinter as tk
 from tkinter import PhotoImage
 
 def create_second_frame(root, name):
+
+    header = PhotoImage(file="images/header.png")
+    header_pic = tk.Label(root, image=header)
+    header_pic.image = header  # reference to avoid garbage collection
+    header_pic.pack(side=tk.TOP, padx=5, pady=5)
+
     # Create a frame for the image and the label
     player_info = tk.Frame(root)
     player_info.pack(fill=tk.BOTH, expand=True)
+
 
     # Load the image
     player = PhotoImage(file="images/playercard.png")
@@ -15,7 +22,11 @@ def create_second_frame(root, name):
     # Create a label for the username
     user = tk.Label(player_info, text=f"Welcome, {name}!", font=("Baloo 2", 18)) 
     user.pack(side=tk.LEFT, padx=15, pady=5) # Added to make sure its on the image 
-    user.place(relx=0.22, rely=0.50, anchor='center')  # Center the label over the image
+    user.place(relx=0.16, rely=0.50, anchor='center')  # Center the label over the image
+
+
+
+
 
     # Add a button to go back
     another_button = tk.Button(root, text="Go Back", command=root.quit)
