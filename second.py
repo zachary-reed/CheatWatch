@@ -3,18 +3,19 @@ from tkinter import PhotoImage
 
 def create_second_frame(root, name):
     # Create a frame for the image and the label
-    main_frame = tk.Frame(root)
-    main_frame.pack(fill=tk.BOTH, expand=True)
+    player_info = tk.Frame(root)
+    player_info.pack(fill=tk.BOTH, expand=True)
 
     # Load the image
     player = PhotoImage(file="images/playercard.png")
-    image_label = tk.Label(main_frame, image=player)
-    image_label.image = player  # Keep a reference to avoid garbage collection
-    image_label.pack(side=tk.LEFT, padx=10, pady=10)
+    player_card = tk.Label(player_info, image=player)
+    player_card.image = player  # Keep a reference to avoid garbage collection
+    player_card.pack(side=tk.LEFT, padx=10, pady=10)
 
     # Create a label for the username
-    username_label = tk.Label(main_frame, text=f"Welcome, {name}!", font=("Baloo 2", 18)) 
-    username_label.place(relx=0.25, rely=0.25, anchor='center')  # Center the label over the image
+    user = tk.Label(player_info, text=f"Welcome, {name}!", font=("Baloo 2", 18)) 
+    user.pack(side=tk.LEFT, padx=15, pady=5) # Added to make sure its on the image 
+    user.place(relx=0.22, rely=0.50, anchor='center')  # Center the label over the image
 
     # Add a button to go back
     another_button = tk.Button(root, text="Go Back", command=root.quit)

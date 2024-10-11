@@ -5,7 +5,7 @@ import second  # Import the second file
 # Create the main application window
 root = tk.Tk()
 root.title("Statistical Anti-Cheat")
-root.geometry("400x300")  # Set the window size
+root.geometry("1024x768")  # Set the window size
 
 photo = PhotoImage(file="images/Group 5.png")
 image_label = tk.Label(root, image=photo)
