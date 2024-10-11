@@ -24,9 +24,10 @@ def create_second_frame(root, name):
     user.pack(side=tk.LEFT, padx=15, pady=5) # Added to make sure its on the image 
     user.place(relx=0.16, rely=0.50, anchor='center')  # Center the label over the image
 
-
-
-
+    suspic = PhotoImage(file="images/suspicionchart.png")
+    sus_pic = tk.Label(player_info, image=suspic)
+    sus_pic.image = suspic  # reference to avoid garbage collection
+    sus_pic.pack(side=tk.LEFT, padx=20, pady=10)
 
     # Add a button to go back
     another_button = tk.Button(root, text="Go Back", command=root.quit)
