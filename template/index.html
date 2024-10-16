@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>CheatWatch</h1>
+    </div>
+    <div class="content">
+        <div class="player-rectangle">
+            <h2>Player: {{ username }}</h2>
+            <!-- change to display specific stats -->
+            <p>Stats: {{ stats.to_html()|safe }}</p>
+        </div>
+        <div class="stats-rectangle">
+            <h2>Stats</h2>
+            <p>Other player stats would go here</p>
+        </div>
+        <button id="toggle-theme">Toggle Dark/Light Mode</button> <!--button for dark mode-->
+        <script>
+            document.getElementById('toggle-theme').addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+        </script>
+            
+    </div>
+    <a href="/logout">Logout</a>
+</body>
+</html>

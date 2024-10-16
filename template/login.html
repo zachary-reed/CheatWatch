@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="toggle-theme">Toggle Dark/Light Mode</button> <!--button for dark mode-->
+        <script>
+            document.getElementById('toggle-theme').addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+        </script>
+            
+    </div>
+</body>
+</html>
