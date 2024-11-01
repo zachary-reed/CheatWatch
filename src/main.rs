@@ -28,7 +28,7 @@ async fn main() -> Result<()> {
      // if output csv file already has content, don't write headers again
     let write_headers = csv_write.metadata()?.len() == 0;
     let mut wtr = csv::WriterBuilder::new().has_headers(write_headers).from_writer(csv_write);
-    let f = File::open("Legit.txt")?;
+    let f = File::open("Cheat.txt")?;
     let mut lines_iter = BufReader::new(f).lines();
     let mut legit_index = get_starting_index("legit_index.txt")?;
     let mut cheat_index = get_starting_index("cheat_index.txt")?;
