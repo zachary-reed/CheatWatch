@@ -5,7 +5,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
+<body class="dark-mode">
     <div class="header">
         <h1>CheatWatch</h1>
     </div>
@@ -19,7 +19,7 @@
             <h2>Stats</h2>
             <p>Other player stats would go here</p>
         </div>
-        <button id="toggle-theme">Toggle Dark/Light Mode</button> <!--button for dark mode-->
+        <button id="toggle-theme" class="button-spacing">Dark/Light</button> <!--button for dark mode-->
         <script>
             document.getElementById('toggle-theme').addEventListener('click', function() {
                 document.body.classList.toggle('dark-mode');
