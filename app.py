@@ -4,10 +4,10 @@ import pandas as pd
 app = Flask(__name__, template_folder="template")
 app.secret_key = 'your_secret_key'  # Replace with a strong secret key
 
-# Dummy user data for login (replace with database logic)
-users = {'user1': 'password1', 'user2': 'password2'}
+# Dummy user data for login 
+users = {'AS1XN': 'password1', 'user2': 'password2'}
 
-# Load stats from CSV (ensure your CSV has columns like 'username' and 'stats')
+# Load stats from CSV 
 stats_df = pd.read_csv('stats.csv')
 
 @app.route('/')
@@ -15,7 +15,7 @@ def index():
     if 'username' in session:
         username = session['username']
         user_stats = stats_df[stats_df['username'] == username]
-        return render_template("index.html", username=username, stats=user_stats)
+        return render_template("index.html", username=username, stats=user_stats, stats_df=stats_df)
     return redirect('/login')
 
 @app.route('/login', methods=['GET', 'POST'])

@@ -18,12 +18,38 @@
     <div class="content">
         <div class="player-rectangle">
             <h2>Player: {{ username }}</h2>
-            <!-- change to display specific stats -->
-            <p>Stats: {{ stats.to_html()|safe }}</p>
+            <p>HSP: {{ stats.hsp.iloc[0] }}</p>
+            <p>WRP: {{ stats.wrp.iloc[0] }}</p>
+            <p>Wins: {{ stats.wins.iloc[0] }}</p>
+            <p>Losses: {{ stats.losses.iloc[0] }}</p>
+            <p>Matches: {{ stats.matches.iloc[0] }}</p>
+            <p>KD: {{ stats.kd.iloc[0] }}</p>
+            <p>Kills: {{ stats.kills.iloc[0] }}</p>
+            <p>Deaths: {{ stats.deaths.iloc[0] }}</p>
+            <p>KPM: {{ stats.kpm.iloc[0] }}</p>
+            <p>Cheater: {{ stats.cheater.iloc[0] }}</p>
         </div>
         <div class="stats-rectangle">
-            <h2>Stats</h2>
-            <p>Other player stats would go here</p>
+            <h2>Other Players' Stats</h2>
+            <ul>
+                {% for index, row in stats_df.iterrows() %}
+                    {% if row.username != username %}
+                        <li>
+                            <strong>{{ row.username }}</strong>:
+                            HSP: {{ row.hsp }},
+                            WRP: {{ row.wrp }},
+                            Wins: {{ row.wins }},
+                            Losses: {{ row.losses }},
+                            Matches: {{ row.matches }},
+                            KD: {{ row.kd }},
+                            Kills: {{ row.kills }},
+                            Deaths: {{ row.deaths }},
+                            KPM: {{ row.kpm }},
+                            Cheater: {{ row.cheater }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
         <button id="toggle-theme" class="button-spacing">Dark/Light</button> <!--button for dark mode-->
         <script>
