@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            max-width: 200px;
+            margin-bottom: 10px; /* space between the img and title*/
+        }
+    </style>
 </head>
-<body>
+<body class="dark-mode">
     <div class="container">
-        <h2>Login</h2>
+        <img src="/static/images/logo.png" alt="Login Icon">
         <form method="post">
             <label for="username">Username:</label>
             <input type="text" name="username" required>
-            <label for="password">Password:</label>
+            <!--<label for="password">Password:</label>
             <input type="password" name="password" required>
-            <button type="submit">Login</button>
+            <button type="submit">Login</button> -->
         </form>
-        <button id="toggle-theme">Toggle Dark/Light Mode</button> <!--button for dark mode-->
+        <button id="toggle-theme" class="button-spacing">Dark/Light</button> <!--button for dark mode-->
         <script>
             document.getElementById('toggle-theme').addEventListener('click', function() {
                 document.body.classList.toggle('dark-mode');
