@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        img {
+            max-width: 1000px;
+            margin-bottom: 10px; /* space between the img and title*/
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <div class="header">
-        <h1>CheatWatch</h1>
+        <img src="/static/images/headerlogo.png" alt="header">
     </div>
     <div class="content">
         <div class="player-rectangle">
