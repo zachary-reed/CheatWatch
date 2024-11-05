@@ -2,12 +2,12 @@ from flask import Flask, render_template, redirect, request, session
 import pandas as pd
 
 app = Flask(__name__, template_folder="template")
-app.secret_key = 'your_secret_key'  # Replace with a strong secret key
+app.secret_key = 'your_secret_key'  # secret key
 
-# Dummy user data for login 
+# Dummy user data for login for demo; TO DO: May need to remove or edit to read full file
 users = {'AS1XN': 'password1', 'user2': 'password2'}
 
-# Load stats from CSV 
+# TO DO: Load stats from zachs csv
 stats_df = pd.read_csv('stats.csv')
 
 @app.route('/')

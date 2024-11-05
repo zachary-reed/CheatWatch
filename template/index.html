@@ -7,7 +7,7 @@
     <style>
         img {
             max-width: 500px;
-            margin-bottom: 10px; /* space between the img and title*/
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -16,7 +16,7 @@
         <img src="/static/images/headerlogo.png" alt="header">
     </div>
     <div class="content">
-        <div class="player-rectangle">
+        <div class="player-rectangle"> <!--TO DO: make this prettier-->
             <h2>Player: {{ username }}</h2>
             <p>HSP: {{ stats.hsp.iloc[0] }}</p>
             <p>WRP: {{ stats.wrp.iloc[0] }}</p>
