@@ -11,6 +11,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url('/static/images/rssimage1.jpg'); /* Path to your background image */
+            background-size: cover; /* Makes sure the background image covers the entire screen */
+            background-position: center; /* Centers the background image */
+            background-repeat: no-repeat; /* Prevents the background from repeating */
         }
         .container {
             text-align: center;
@@ -18,10 +22,13 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(20, 19, 19, 0.698); /* Semi-transparent background for the container */
+            padding: 40px;
+            border-radius: 12px;
         }
         img {
             max-width: 200px;
-            margin-bottom: 10px; /* space between the img and title*/
+            margin-bottom: 10px; /* space between the img and title */
         }
     </style>
 </head>
@@ -35,13 +42,13 @@
             <input type="password" name="password" required>
             <button type="submit">Login</button> -->
         </form><!--TO DO: may need to remove button if we add a background pic-->
-        <button id="toggle-theme" class="button-spacing">Dark/Light</button> <!--button for dark mode-->
+        <!--<button id="toggle-theme" class="button-spacing">Dark/Light</button> button for dark mode-->
+        <!--
         <script>
             document.getElementById('toggle-theme').addEventListener('click', function() {
                 document.body.classList.toggle('dark-mode');
             });
-        </script>
-            
+        </script>-->
     </div>
 </body>
 </html>
