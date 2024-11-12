@@ -32,24 +32,31 @@
         <div class="stats-rectangle">
             <h2>Other Players' Stats</h2>
             <ul>
-                {% for index, row in stats_df.iterrows() %}
-                    {% if row.username != username %}
-                        <li>
-                            <strong>{{ row.username }}</strong>:
-                            HSP: {{ row.hsp }},
-                            WRP: {{ row.wrp }},
-                            Wins: {{ row.wins }},
-                            Losses: {{ row.losses }},
-                            Matches: {{ row.matches }},
-                            KD: {{ row.kd }},
-                            Kills: {{ row.kills }},
-                            Deaths: {{ row.deaths }},
-                            KPM: {{ row.kpm }},
-                            Cheater: {{ row.cheater }}
-                        </li>
-                    {% endif %}
+                {% for index, row in stats.iterrows() %}
+                    <li>
+                        <strong>{{ row.username }}</strong>:
+                        HSP: {{ row.hsp }},
+                        WRP: {{ row.wrp }},
+                        Wins: {{ row.wins }},
+                        Losses: {{ row.losses }},
+                        Matches: {{ row.matches }},
+                        KD: {{ row.kd }},
+                        Kills: {{ row.kills }},
+                        Deaths: {{ row.deaths }},
+                        KPM: {{ row.kpm }},
+                        Cheater: {{ row.cheater }}
+                    </li>
                 {% endfor %}
             </ul>
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('index', page=page-1) }}">Previous</a>
+                {% endif %}
+        
+                {% if page < total_pages %}
+                    <a href="{{ url_for('index', page=page+1) }}">Next</a>
+                {% endif %}
+            </div>
         </div>
         <button id="toggle-theme" class="button-spacing">Dark/Light</button> <!--button for dark mode-->
         <script>

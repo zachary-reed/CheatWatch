@@ -14,8 +14,13 @@ stats_df = pd.read_csv('R6_Data.csv')
 def index():
     if 'username' in session:
         username = session['username']
-        user_stats = stats_df[stats_df['username'] == username]
-        return render_template("index.html", username=username, stats=user_stats, stats_df=stats_df)
+        other_players_stats = stats_df[stats_df['username'] != username]
+        page = request.args.get('page', 1, type=int)
+        per_page = 9
+        start = (page - 1) * per_page
+        end = start + per_page
+        page_stats = other_players_stats.iloc[start:end]
+        return render_template("index.html", username=username, stats=page_stats, page=page, total_pages=len(other_players_stats) // per_page + (1 if len(other_players_stats) % per_page != 0 else 0))
     return redirect('/login')
 
 @app.route('/login', methods=['GET', 'POST'])
