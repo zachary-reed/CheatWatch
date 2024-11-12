@@ -35,6 +35,11 @@
 <body class="dark-mode">
     <div class="container">
         <img src="/static/images/logo.png" alt="Login Icon">
+    {% if error %}
+        <div style="color: red; font-weight: bold;">
+            {{ error }}
+        </div>
+    {% endif %}
         <form method="post">
             <label for="username">Username:</label>
             <input type="text" name="username" required>
