@@ -8,7 +8,7 @@ app.secret_key = 'your_secret_key'  # secret key
 #users = {'AS1XN': 'password1', 'user2': 'password2'}
 
 # TO DO: Load stats from zachs csv
-stats_df = pd.read_csv('stats.csv')
+stats_df = pd.read_csv('R6_Data.csv')
 
 @app.route('/')
 def index():
