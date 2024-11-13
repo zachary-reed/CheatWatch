@@ -101,7 +101,7 @@ body.dark-mode .header,
 body.dark-mode .player-rectangle,
 body.dark-mode .stats-rectangle,
 body.dark-mode .stats-rectangle th,
-body.dark-mode .player-rectangle th{
+body.dark-mode .player-rectangle th {
     background-color: #1E1E1E;
     border-color: #333;
 }

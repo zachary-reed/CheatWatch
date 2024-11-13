@@ -4,14 +4,10 @@ import pandas as pd
 app = Flask(__name__, template_folder="template")
 app.secret_key = 'your_secret_key'  # secret key
 
-# Dummy user data for login for demo; TO DO: May need to remove or edit to read full file
-#users = {'AS1XN': 'password1', 'user2': 'password2'}
-
-# TO DO: Load stats from zachs csv
-stats_df = pd.read_csv('R6_Data.csv')
+stats_df = pd.read_csv('R6_Data.csv') # reads data from r6_data
 
 @app.route('/')
-def index():
+def index(): # this is the index page
     if 'username' in session:
         username = session['username']
         other_players_stats = stats_df[stats_df['username'] != username]
@@ -24,19 +20,19 @@ def index():
     return redirect('/login')
 
 @app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
+def login(): # this is the login page 
+    if request.method == 'POST': # user inputs username
         username = request.form['username']
-        #password = request.form['password']
-        if username in stats_df['username'].values: #and users[username] == password:
+        if username in stats_df['username'].values:
             session['username'] = username
             return redirect('/')
-        else:
+        else: # error for wrong username
             print("Account does not exist")
             return render_template('login.html', error="Account does not exist")
     return render_template('login.html')
+
 @app.route('/logout')
-def logout():
+def logout(): # this is the logout button that redirects back to the login page
     session.pop('username', None)
     return redirect('/login')
 

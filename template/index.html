@@ -16,7 +16,7 @@
         <img src="/static/images/headerlogo.png" alt="header">
     </div>
     <div class="content">
-        <div class="player-rectangle">
+        <div class="player-rectangle"> <!--the users stats shown as a table-->
             <h2>Player: {{ username }}</h2>
             <table>
                 <tbody>
@@ -63,7 +63,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="stats-rectangle">
+        <div class="stats-rectangle"> <!--other players stats made into a table-->
             <h2>Other Players' Stats</h2>
             <table>
                 <thead>
@@ -99,7 +99,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="pagination">
+            <div class="pagination"> <!--not all data is shown at once; 9 players shown at a time-->
                 {% if page > 1 %}
                     <a href="{{ url_for('index', page=page-1) }}">Previous</a>
                 {% endif %}
