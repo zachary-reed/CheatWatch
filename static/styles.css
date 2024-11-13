@@ -36,9 +36,62 @@ body {
     margin-top: 20px;
 }
 
+/* player stats */
+.player-rectangle table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
 
-/* dark mode style */
+.player-rectangle th {
+    text-align: left;
+    padding: 8px;
+    background-color: #f2f2f2;
+    width: 120px;
+}
 
+.player-rectangle td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* other players stats */
+.stats-rectangle table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.stats-rectangle th, .stats-rectangle td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.stats-rectangle th {
+    background-color: #f5f5f5;
+}
+
+/* pagination */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+/* dark mode */
 body.dark-mode {
     background-color: #121212;
     color: white;
@@ -46,7 +99,9 @@ body.dark-mode {
 
 body.dark-mode .header,
 body.dark-mode .player-rectangle,
-body.dark-mode .stats-rectangle {
+body.dark-mode .stats-rectangle,
+body.dark-mode .stats-rectangle th,
+body.dark-mode .player-rectangle th{
     background-color: #1E1E1E;
     border-color: #333;
 }
