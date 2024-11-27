@@ -117,7 +117,6 @@ pub struct User {
     pub deaths: usize,
     pub kpm: f32,
     pub cheater: bool,
-    
 }
 
 impl User {
@@ -138,6 +137,38 @@ impl User {
         Ok(user)
     }
 }
+
+
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct InputUser {
+    pub username: String,
+    pub hsp: f32,
+    pub wrp: f32,
+    pub wins: usize,
+    pub losses: usize,
+    pub matches: usize,
+    pub kd: f32,
+    pub kills: usize,
+    pub deaths: usize,
+    pub kpm: f32,    
+}
+impl From<User> for InputUser {
+    fn from(u: User) -> InputUser {
+        InputUser {
+            username: u.username,
+            hsp: u.hsp,
+            wrp: u.wrp,
+            wins: u.wins,
+            losses: u.losses,
+            matches: u.matches,
+            kd: u.kd,
+            kills: u.kills,
+            deaths: u.deaths,
+            kpm: u.kpm
+        }
+    }
+}
+
 
 /// Parses a single usize from the file provided, or returns 0 if file not found. 
 pub fn get_starting_index(file: impl AsRef<str>) -> Result<usize> {

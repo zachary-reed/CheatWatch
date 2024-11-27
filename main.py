@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-
+import json
+import subprocess
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
@@ -11,6 +12,11 @@ def predict_user(user):
     user = np.array(user[1:]).reshape(1, -1)
     prediction = model.predict_proba(user)
     return prediction
+
+def get_user_data(username):
+    p = subprocess.run(["cargo", "run", "--", "--username", username], capture_output=True)
+    user = json.loads(p.stdout)
+    return user
 
 data = pd.read_csv("R6_Data.csv")
 
@@ -30,7 +36,8 @@ X_train = ss_train.fit_transform(X_train)
 ss_test = StandardScaler()
 X_test = ss_test.fit_transform(X_test)
 
-user = [0.518,0.506,1125,957,2221,1.19,9604,8047,4.32]
+
+
 predictions = model.predict(X_test)
 
 cm = confusion_matrix(y_test, predictions)
@@ -48,7 +55,10 @@ print('Accuracy of the binary classifier = {:0.3f}'.format(accuracy))
 
 
 # user = call_scraper(username)
-user = ["polo1.",0.518,0.506,1125,957,2221,1.19,9604,8047,4.32]
+#user = ["polo1.",0.518,0.506,1125,957,2221,1.19,9604,8047,4.32]
+username = "AS1XN" # TODO: Take username as input
+user = get_user_data(username)
+
 prediction = predict_user(user)
 print(prediction)
 # user is a single row of data, including username but not the "cheater" field
