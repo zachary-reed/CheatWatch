@@ -5,55 +5,44 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
-        body { /* body for backround image to cover the whole screen */
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('/static/images/rssimage1.jpg'); 
+            background-image: url('/static/images/rssimage1.jpg');
             background-size: cover;
-            background-position: center; 
+            background-position: center;
             background-repeat: no-repeat;
         }
-        .container { /* container for image and text box with semi transparent background */
+        .container {
             text-align: center;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: rgba(20, 19, 19, 0.698);
             padding: 40px;
             border-radius: 12px;
+            background-color: rgba(20, 19, 19, 0.698);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        img { /* image size and space between the img and title */
+        img {
             max-width: 200px;
             margin-bottom: 10px;
         }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
     </style>
-  
 </head>
 <body class="dark-mode">
     <div class="container">
         <img src="/static/images/logo.png" alt="Login Icon">
-    {% if error %} <!--for the error message-->
-        <div style="color: red; font-weight: bold;">
-            {{ error }}
-        </div>
-    {% endif %}
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class=flashes>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  <br>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
         <form method="post">
             <label for="username">Username:</label>
             <input type="text" name="username" required>
+            <button type="submit">Enter</button>
         </form>
     </div>
 </body>
