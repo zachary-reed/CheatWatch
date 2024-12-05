@@ -8,10 +8,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.preprocessing import StandardScaler
 
-# Load model and data
+# loads model and data
 data = pd.read_csv("R6_Data.csv")  # read training data
-X = data.drop(["username", "cheater"], axis=1)  # Features
-y = data['cheater']  # Labels
+X = data.drop(["username", "cheater"], axis=1)  # features
+y = data['cheater']  # labels
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 model = LogisticRegression()
@@ -23,13 +23,13 @@ X_train = ss_train.fit_transform(X_train)
 ss_test = StandardScaler()
 X_test = ss_test.fit_transform(X_test)
 
-# Define prediction function
+# prediction function
 def predict_user(user):
     user = np.array(user).reshape(1, -1)
     prediction = model.predict_proba(user)
     return prediction
 
-# Define function to get user data from the Rust app
+# function to get user data from the Rust app
 def get_user_data(username):
     p = subprocess.run(["cargo", "run", "--", "--username", username], capture_output=True)
     try:
@@ -39,12 +39,11 @@ def get_user_data(username):
     data = [user["hsp"], user["wrp"], user["wins"], user["losses"], user["matches"], user["kd"], user["kills"], user["deaths"], user["kpm"]]
     return data
 
-# Set up the Flask app
 app = Flask(__name__, template_folder="template")
-app.secret_key = 'your_secret_key'  # secret key
+app.secret_key = 'your_secret_key'
 
 @app.route('/')
-def index():  # this is the index page
+def index(): 
     if 'username' in session:
         username = session['username']
         user_data = data[data['username'] == username].iloc[0]  # Get user stats from CSV
@@ -68,16 +67,16 @@ def login():
     if request.method == 'POST':  # user inputs username
         username = request.form['username']
         
-        # Check if username exists in the CSV file
+        # checks if username exists in the CSV file
         if username in data['username'].values:
-            session['username'] = username  # Store the username in the session
-            return redirect('/')  # Redirect to the home page
+            session['username'] = username  # stores the username in the session
+            return redirect('/')  # redirects to the home page
         else:
             return render_template('login.html', error="Account does not exist")
     return render_template('login.html')
 
 @app.route('/logout')
-def logout():  # this is the logout button that redirects back to the login page
+def logout(): 
     session.pop('username', None)
     return redirect('/login')
 
