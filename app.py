@@ -46,7 +46,7 @@ app.secret_key = 'your_secret_key'
 def index(): 
     if 'username' in session:
         username = session['username']
-        user_data = data[data['username'] == username].iloc[0]  # Get user stats from CSV
+        user_data = data[data['username'] == username].iloc[0] 
         other_players_stats = data[data['username'] != username]
         page = request.args.get('page', 1, type=int)
         per_page = 9
@@ -54,12 +54,19 @@ def index():
         end = start + per_page
         page_stats = other_players_stats.iloc[start:end]
         
-        # Predict if the user is a cheater
         prediction = predict_user([user_data[["hsp", "wrp", "wins", "losses", "matches", "kd", "kills", "deaths", "kpm"]].values.tolist()])[0]
         prob_cheater = prediction[1] * 100  # probability of being a cheater
         
         flash(f"Probability that user {username} is a cheater: {prob_cheater:.2f}%")
-        return render_template("index.html", username=username, stats=user_data, page=page, total_pages=len(other_players_stats) // per_page + (1 if len(other_players_stats) % per_page != 0 else 0))
+        
+        if prob_cheater >= 50:
+            flash_color = "red"
+        elif prob_cheater >= 30:
+            flash_color = "orange"
+        else:
+            flash_color = "green"
+        
+        return render_template("index.html", username=username, stats=user_data, page=page, total_pages=len(other_players_stats) // per_page + (1 if len(other_players_stats) % per_page != 0 else 0), prob_cheater=prob_cheater, flash_color=flash_color)
     return redirect('/login')
 
 @app.route('/login', methods=['GET', 'POST'])

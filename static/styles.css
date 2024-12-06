@@ -1,5 +1,5 @@
 body {
-    font-family: monospace, sans-serif;
+    font-family: optima;
 }
 
 .header {
@@ -16,83 +16,65 @@ body {
     align-items: center;
 }
 
-.player-rectangle, .stats-rectangle {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 10px;
-    width: 80%;
-    border-radius: 10px;
-}
-
 .player-rectangle {
     background-color: #f9f9f9;
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid black; 
 }
 
-.stats-rectangle {
-    background-color: #e9e9e9;
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    grid-template-rows: auto auto; 
+    gap: 10px;
+    justify-items: center;
+    border: 2px solid black; 
+    border-radius: 10px;
+    padding: 15px;
 }
 
-.button-spacing {
-    margin-top: 20px;
-}
-
-/* player stats */
-.player-rectangle table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.player-rectangle th {
-    text-align: left;
-    padding: 8px;
-    background-color: #f2f2f2;
-    width: 120px;
-}
-
-.player-rectangle td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* other players stats */
-.stats-rectangle table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.stats-rectangle th, .stats-rectangle td {
+.stat-item {
+    text-align: center;
     padding: 10px;
     border: 1px solid #ddd;
-    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    width: 100px;
 }
 
-.stats-rectangle th {
-    background-color: #f5f5f5;
+.stat-item strong {
+    display: block;
+    margin-bottom: 5px;
 }
 
+/* cheater stat box style */
+.stat-item.cheater {
+    background-color: #FFD700;  
+    color: black;
+    width: 100%; 
+}
 
 .flash-message {
     padding: 10px;
     border-radius: 5px;
-    margin: 20px 0;
+    margin-top: 20px;
     font-weight: bold;
+    text-align: center;
 }
 
-.flash-message.low-probability {
-    background-color: #4CAF50; /* Green for low probability */
-    color: #fff;
+/* flash message colors */
+.flash-message.red {
+    background-color: red;
 }
 
-.flash-message.medium-probability {
-    background-color: #FFEB3B; /* Yellow for medium probability */
-    color: #333;
+.flash-message.orange {
+    background-color: orange;
 }
 
-.flash-message.high-probability {
-    background-color: #F44336; /* Red for high probability */
-    color: #fff;
+.flash-message.green {
+    background-color: green;
 }
 
 /* dark mode */
@@ -101,11 +83,17 @@ body.dark-mode {
     color: white;
 }
 
+/* cheater stat box dark mode */
+body.dark-mode .stat-item.cheater {
+    background-color: #FFD700;  
+    color: black;
+    width: 100%; 
+}
+
 body.dark-mode .header,
 body.dark-mode .player-rectangle,
-body.dark-mode .stats-rectangle,
-body.dark-mode .stats-rectangle th,
-body.dark-mode .player-rectangle th {
+body.dark-mode .stats-container,
+body.dark-mode .stat-item {
     background-color: #1E1E1E;
     border-color: #333;
 }

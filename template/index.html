@@ -11,12 +11,23 @@
         }
 
         .flash-message {
-            background-color: #095326; /* Highlighted message color */
             padding: 10px;
             border-radius: 5px;
-            margin: 20px 0;
-            color: #fff;
+            margin-top: 20px;
+            color: white;
             font-weight: bold;
+        }
+
+        .flash-message.red {
+            background-color: red;
+        }
+
+        .flash-message.orange {
+            background-color: orange;
+        }
+
+        .flash-message.green {
+            background-color: green;
         }
     </style>
 </head>
@@ -25,54 +36,70 @@
         <img src="/static/images/headerlogo.png" alt="header">
     </div>
     <div class="content">
-        <div class="player-rectangle"> <!-- the user's stats shown as a table -->
-            <h2>Player: {{ username }}</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>HSP</th>
-                        <td>{{ stats.hsp }}</td>
-                    </tr>
-                    <tr>
-                        <th>WRP</th>
-                        <td>{{ stats.wrp }}</td>
-                    </tr>
-                    <tr>
-                        <th>Wins</th>
-                        <td>{{ stats.wins }}</td>
-                    </tr>
-                    <tr>
-                        <th>Losses</th>
-                        <td>{{ stats.losses }}</td>
-                    </tr>
-                    <tr>
-                        <th>Matches</th>
-                        <td>{{ stats.matches }}</td>
-                    </tr>
-                    <tr>
-                        <th>KD</th>
-                        <td>{{ stats.kd }}</td>
-                    </tr>
-                    <tr>
-                        <th>Kills</th>
-                        <td>{{ stats.kills }}</td>
-                    </tr>
-                    <tr>
-                        <th>Deaths</th>
-                        <td>{{ stats.deaths }}</td>
-                    </tr>
-                    <tr>
-                        <th>KPM</th>
-                        <td>{{ stats.kpm }}</td>
-                    </tr>
-                    <tr>
-                        <th>Cheater</th>
-                        <td>{{ stats.cheater }}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="player-rectangle"> 
+            <h2>{{ username }}</h2>
+            
+            <!-- stats container with a grid layout -->
+            <div class="stats-container">
+                <!-- top row -->
+                <div class="stat-item">
+                    <strong>HSP</strong><br>
+                    {{ stats.hsp }}
+                </div>
+                <div class="stat-item">
+                    <strong>WRP</strong><br>
+                    {{ stats.wrp }}
+                </div>
+                <div class="stat-item">
+                    <strong>Wins</strong><br>
+                    {{ stats.wins }}
+                </div>
+                <div class="stat-item">
+                    <strong>Losses</strong><br>
+                    {{ stats.losses }}
+                </div>
+                <div class="stat-item">
+                    <strong>KD</strong><br>
+                    {{ stats.kd }}
+                </div>
+
+                <!-- bottom row -->
+                <div class="stat-item">
+                    <strong>Kills</strong><br>
+                    {{ stats.kills }}
+                </div>
+                <div class="stat-item">
+                    <strong>Deaths</strong><br>
+                    {{ stats.deaths }}
+                </div>
+                <div class="stat-item">
+                    <strong>KPM</strong><br>
+                    {{ stats.kpm }}
+                </div>
+
+                <div class="stat-item">
+                    <strong>Matches</strong><br>
+                    {{ stats.matches }}
+                </div>
+
+                <!-- cheater stat box -->
+                <div class="stat-item cheater">
+                    <strong>Cheater</strong><br>
+                    {{ stats.cheater }}
+                </div>
+
+            </div>
         </div>
-    </div>    
+        
+        <!-- Cheater flash message -->
+         <!--
+        {% if stats.cheater %}
+            <div class="flash-message">
+                Cheater Probability: {{ stats.cheater }}%
+            </div>
+        {% endif %} -->
+    </div>
+    
     <button id="toggle-theme" class="button-spacing">Dark/Light</button> <!-- button for dark mode -->
     <script>
         document.getElementById('toggle-theme').addEventListener('click', function() {
@@ -84,7 +111,7 @@
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="flash-message">
+            <div class="flash-message {{ flash_color }}">
                 <p>{{ messages[0] }}</p>
             </div>
         {% endif %}
